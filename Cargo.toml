@@ -2,6 +2,9 @@
 name = "cloudflare-rust-workers"
 version = "0.1.0"
 edition = "2021"
+description = "Cloudflare Workers sample project built with Rust and WebAssembly"
+repository = "https://github.com/myzkey/cloudflare-rust-workers"
+license = "MIT"
 
 [package.metadata.release]
 release = false
