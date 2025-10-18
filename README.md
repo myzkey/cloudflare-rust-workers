@@ -1,5 +1,7 @@
 # Cloudflare Workers with Rust
 
+[![CI](https://github.com/myzkey/cloudflare-rust-workers/workflows/CI/badge.svg)](https://github.com/myzkey/cloudflare-rust-workers/actions)
+
 RustとWebAssemblyで構築されたCloudflare Workersサンプルプロジェクトです。
 
 ## 機能
@@ -53,6 +55,65 @@ wrangler dev
 
 ```bash
 cargo check --target wasm32-unknown-unknown
+```
+
+### コード品質チェック
+
+#### Lint（Clippy）
+
+```bash
+# 基本的なlintチェック
+cargo clippy
+
+# より厳格なチェック
+cargo clippy -- -W clippy::all -W clippy::pedantic
+```
+
+#### フォーマット（rustfmt）
+
+```bash
+# フォーマットチェック（変更なし）
+cargo fmt -- --check
+
+# フォーマット実行
+cargo fmt
+```
+
+#### セキュリティ監査
+
+```bash
+# cargo-auditをインストール（初回のみ）
+cargo install cargo-audit
+
+# 脆弱性チェック
+cargo audit
+```
+
+## CI/CD
+
+GitHub Actionsを使用した自動化されたCI/CDパイプラインが設定されています：
+
+### 自動実行される項目
+
+- **コードチェック**: `cargo check`
+- **フォーマット**: `cargo fmt --check`
+- **Lint**: `cargo clippy`
+- **セキュリティ監査**: `cargo audit`
+- **ビルド**: `worker-build --release`
+
+### トリガー
+
+- **push**: mainブランチへのプッシュ時
+- **pull_request**: mainブランチへのPRが作成・更新された時
+
+### 手動実行
+
+```bash
+# ローカルでCIと同じチェックを実行
+cargo check --target wasm32-unknown-unknown
+cargo fmt -- --check
+cargo clippy --target wasm32-unknown-unknown -- -D warnings
+cargo audit
 ```
 
 ### Cloudflareへのデプロイ
