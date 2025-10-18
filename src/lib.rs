@@ -1,8 +1,8 @@
 use worker::*;
 
-mod types;
 mod handlers;
 mod routes;
+mod types;
 
 use routes::configure_api_routes;
 

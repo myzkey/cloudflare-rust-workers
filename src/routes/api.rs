@@ -1,14 +1,14 @@
+use crate::handlers::{handle_delete, handle_get, handle_post};
 use worker::Router;
-use crate::handlers::{handle_get, handle_post, handle_delete};
 
 pub fn configure_api_routes(router: Router<()>) -> Router<()> {
     router
         .get_async("/foo", handle_get)
         .post_async("/bar", handle_post)
         .delete_async("/baz", handle_delete)
-        // 新しいルートを簡単に追加できます
-        // .get_async("/health", handle_health)
-        // .post_async("/users", handle_create_user)
+    // 新しいルートを簡単に追加できます
+    // .get_async("/health", handle_health)
+    // .post_async("/users", handle_create_user)
 }
 
 // より細かく分けたい場合の例
