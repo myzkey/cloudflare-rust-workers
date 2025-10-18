@@ -1,5 +1,6 @@
 name = "cloudflare-rust-workers"
 main = "build/index.js"
+compatibility_date = "2025-10-08"
 
 [build]
 command = "cargo install worker-build && worker-build --release"
